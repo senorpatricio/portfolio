@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -28,10 +29,14 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="js/app.js"></script>
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="portTrans">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -46,20 +51,26 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" ng-controller="translateController">
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a ng-click="changeLanguage('en')" translate="button_en" href="">English</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#projects">Projects</a>
+                        <a ng-click="changeLanguage('es')" translate="button_es" href="">Español</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#about">{{ 'ABOUT' | translate }}</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#projects">{{ 'PROJECTS' | translate }}</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">{{ 'CONTACT' | translate }}</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +86,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Patrick Harding</h1>
-                        <p class="intro-text">We are what we believe we are <br/>-C.S. Lewis</p> <!-- What is my creed? -->
+                        <p class="intro-text">{{ 'QUOTE' | translate }} <br/>-C.S. Lewis</p> <!-- What is my creed? -->
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -89,23 +100,23 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Me</h2>
-                <p>My objective is to seek out new challenges that will broaden and sharpen my understanding and knowledge of web development. </p>
-                <p>My specialties include:</p>
+                <h2>{{ 'ABOUT_TITLE' | translate }}</h2>
+                <p>{{ 'ABOUT_PAR1' | translate }}</p>
+                <p>{{ 'ABOUT_PAR2' | translate }}</p>
                 <ul class="attributes">
-                    <li>Custom HTML/CSS</li>
-                    <li>Preprocessed CSS (SCSS, SASS, Compass</li>
-                    <li>Wordpress theme design</li>
-                    <li>Twitter Bootstrap</li>
-                    <li>Javascript</li>
+                    <li>{{ 'ABOUT_L1' | translate }}</li>
+                    <li>{{ 'ABOUT_L2' | translate }}</li>
+                    <li>{{ 'ABOUT_L3' | translate }}</li>
+                    <li>{{ 'ABOUT_L4' | translate }}</li>
+                    <li>{{ 'ABOUT_L5' | translate }}</li>
 
                 </ul>
-                <p>My next language goals are:</p>
+                <!-- <p>My next language goals are:</p>
                 <ul class="attributes">
                     <li>AngularJS framework</li>
                     <li>Django framework</li>
 
-                </ul>
+                </ul> -->
             </div>
         </div>
     </section>
@@ -115,14 +126,14 @@
         <div class="projects-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Projects</h2>
-                    <p>Check out some projects I have been working on.</p>
-                    <a href="https://github.com/senorpatricio" target="_blank" class="btn btn-default btn-lg">Visit my Github</a><!--put a placeholder graphic until I have a projects page -->
-                    <a href="http://titan3.patrickmharding.com" target="_blank" class="btn btn-default btn-lg">Titan3 Website</a>
+                    <h2>{{ 'PROJECTS' | translate }}</h2>
+                    <p>{{ 'PROJECTS_PAR1' | translate }}</p>
+                    <a href="https://github.com/senorpatricio" target="_blank" class="btn btn-default btn-lg">{{ 'PROJECTS_GIT_BUTTON' | translate }}</a><!--put a placeholder graphic until I have a projects page -->
+                    <a href="http://titan3.patrickmharding.com" target="_blank" class="btn btn-default btn-lg">{{ 'PROJECTS_TITAN_BUTTON' | translate }}</a>
 
-                    <a href="http://babimemo.patrickmharding.com/#/recipes" target="_blank" class="btn btn-default btn-lg">Babimemo App</a>
+                    <a href="http://babimemo.patrickmharding.com/#/recipes" target="_blank" class="btn btn-default btn-lg"> {{ 'PROJECTS_BABI_BUTTON' | translate }} </a>
                    <!-- <a href="#" target="_blank" class="btn btn-default btn-lg">View my latest app</a>-->
-                    <a href="#" target="_blank" class="btn btn-default btn-lg">View my latest app</a>
+                    <a href="#" target="_blank" class="btn btn-default btn-lg"> {{ 'PROJECTS_LATEST_BUTTON' | translate }} </a>
                     
                 </div>
             </div>
@@ -133,8 +144,8 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Patrick</h2>
-                <p>Feel free to connect with me!</p>
+                <h2>{{ 'CONTACT' | translate }} Patrick</h2>
+                <p>{{ 'CONTACT_ME' | translate }}</p>
                 <p><a href="mailto:harding_pm@outlook.com">harding_pm@outlook.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
@@ -158,7 +169,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Patrick Harding 2015</p>
+            <p>Copyright &copy; Patrick Harding <script type="text/javascript">document.write(new Date().getFullYear());</script></p>
         </div>
     </footer>
 
